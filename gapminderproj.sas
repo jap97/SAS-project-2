@@ -23,7 +23,7 @@ run ;
 	if lifeexpectancy < 70 then clife = 0 ;
 	else if lifeexpectancy > 70 then clife = 1 ;
 
-	
+
 /*Inferential Statistic */
 proc contents = new ;
 proc corr ; var lifeexpectancy urbanrate
@@ -34,3 +34,14 @@ proc corr ; var lifeexpectancy urbanrate
 calculating mean again 
 proc means ;
 var urbanrate_c;    */
+
+* Linear regression model Test */
+
+ /*proc glm plots(unpack)= all ;
+ model lifeexpectancy = urbanrate_c  alcconsumption_c /solution clparm;
+ output residual = res student = stdres out = results ;  
+ 
+   proc gplot ;
+ label stdres="standardize residual " country = "Country" ;
+ plot stdres*country/vref= 0 ;
+ run ;*/
