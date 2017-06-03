@@ -45,3 +45,14 @@ var urbanrate_c;    */
  label stdres="standardize residual " country = "Country" ;
  plot stdres*country/vref= 0 ;
  run ;*/
+
+ 
+*Visualiztion
+/*Linear and quadratic Scatter plot   */
+
+/*proc sgplot ; 
+reg x = urbanrate y= lifeexpectancy / lineattrs=(color=blue thickness = 2 )degree=1 clm ;
+*reg x = urbanrate y = lifeexpectancy / lineattrs=(color=green thickness = 2 )degree = 2 clm ;
+yaxis label="Life Expectancy"; 
+xaxis label=  "Urban Rate";   */
+run ; 
