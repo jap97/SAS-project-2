@@ -46,7 +46,7 @@ var urbanrate_c;    */
  plot stdres*country/vref= 0 ;
  run ;*/
 
- 
+
 *Visualiztion
 /*Linear and quadratic Scatter plot   */
 
@@ -55,4 +55,31 @@ reg x = urbanrate y= lifeexpectancy / lineattrs=(color=blue thickness = 2 )degre
 *reg x = urbanrate y = lifeexpectancy / lineattrs=(color=green thickness = 2 )degree = 2 clm ;
 yaxis label="Life Expectancy"; 
 xaxis label=  "Urban Rate";   */
+run ; 
+
+/*Logistic Regression test */
+DATA logistic ; set mydata.gapminder ;
+/* Collapsing the response variabe into two category 
+	life expectancy > 70 = 1 
+	life expectancy < 70 = 0 */
+	
+  IF lifeexpectancy GE 70 then clifeexpec = 1 ;
+  else clifeexpec = 0 ;
+  
+run ;
+proc sort ; by Country ;
+
+
+/*Centering explanatory variable  */
+proc means ;
+var urbanrate co2emissions alcconsumption incomeperperson employrate  ;
+/*   alcconsumption_c  incomeperperson_c    co2emissions_c */
+data centering ; 
+set logistic ;
+urbanrate_c = urbanrate - 56.7693596	;
+co2emissions_c = co2emissions - 5033261622 ;
+alcconsumption_c = alcconsumption - 6.6894118 ;
+incomeperperson_c = incomeperperson - 8740.97 ;
+employrate_c = employrate - 58.6359551 ; 
+proc logistic descending ; model clifeexpec =  urbanrate_c employrate_c   ; 
 run ; 
