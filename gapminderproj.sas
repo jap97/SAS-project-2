@@ -24,3 +24,13 @@ run ;
 	else if lifeexpectancy > 70 then clife = 1 ;
 
 	
+/*Inferential Statistic */
+proc contents = new ;
+proc corr ; var lifeexpectancy urbanrate
+	
+	
+/*proc print data= urbanmean ;
+
+calculating mean again 
+proc means ;
+var urbanrate_c;    */
